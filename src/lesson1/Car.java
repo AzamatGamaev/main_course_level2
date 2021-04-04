@@ -1,17 +1,12 @@
 package lesson1;
 
-public class Car extends Mechanism implements Running {
+public class Car extends InanimateParticipants {
 
-    public Car(String name) {
-        super(name);
+    public Car(String name, int runDistance, int jumpHeight) {
+        super(name, runDistance, jumpHeight);
     }
 
     public void start(){
         System.out.println("Двигатель заведён.");
-    }
-
-    @Override
-    public void run() {
-        System.out.println("Машина едет.");
     }
 }

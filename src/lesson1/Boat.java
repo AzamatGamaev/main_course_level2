@@ -1,8 +1,9 @@
 package lesson1;
 
-public class Boat extends Mechanism implements Swimming {
-    public Boat(String name) {
-        super(name);
+public class Boat extends InanimateParticipants {
+
+    public Boat(String name, int runDistance, int jumpHeight) {
+        super(name, runDistance, jumpHeight);
     }
 
     public void slide() {
@@ -13,5 +14,5 @@ public class Boat extends Mechanism implements Swimming {
     public void swim() {
         System.out.println("Лодка плывёт.");
     }
-    //commit
+
 }

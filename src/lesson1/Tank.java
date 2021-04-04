@@ -1,23 +1,13 @@
 package lesson1;
 
-public class Tank extends Mechanism implements Running, Swimming, Bouncing {
+public class Tank extends InanimateParticipants {
 
-    public Tank(String name) {
-        super(name);
-    }
-
-    @Override
-    public void run() {
-        System.out.println("Танк едет.");
+    public Tank(String name, int runDistance, int jumpHeight) {
+        super(name, runDistance, jumpHeight);
     }
 
     @Override
     public void swim() {
-        System.out.println("Танк плывёт.");
-    }
-
-    @Override
-    public void jump() {
-        System.out.println("Танк подлетел на трамплине.");
+        System.out.println("Срочное погружение");
     }
 }
