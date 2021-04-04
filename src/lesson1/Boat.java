@@ -13,4 +13,5 @@ public class Boat extends Mechanism implements Swimming {
     public void swim() {
         System.out.println("Лодка плывёт.");
     }
+    //commit
 }
