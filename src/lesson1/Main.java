@@ -11,7 +11,7 @@ public class Main {
 
         participants[0] = new Human("Женя", 10, 10);
         participants[1] = new Robot("Валли", 15, 15);
-        participants[2] = new Cat("Том", 7, 10);
+        participants[2] = new Cat("Том", 7, 12);
 
         Barriers[] barriers = new Barriers[6];
 
@@ -27,62 +27,46 @@ public class Main {
         }
 
 
-        for (int i = 0; i < participants.length; i++) {
+        for (Object participant : participants) {
             boolean result = true;
-            for (int j = 0; j < barriers.length; j++) {
+            for (Barriers barrier : barriers) {
 
-                if (isWall(barriers[j])) {
+                if (isWall(barrier)) {
 
-                    int height = ((Wall) barriers[j]).getHeight();
-                    System.out.println(((Wall) barriers[j]).getName() + " с высотой " + height);
+                    int height = ((Wall) barrier).getHeight();
+                    System.out.println(barrier.getName() + " с высотой " + height);
 
-                    if (participants[i] instanceof AnimateParticipants) {
-                        if (((AnimateParticipants) participants[i]).getJumpHeight() >= height) {
-                            System.out.println((((AnimateParticipants) participants[i]).getName()) + " перепрыгнул это препядтсиве.");
-                            result = true;
-                        } else {
-                            System.out.println((((AnimateParticipants) participants[i]).getName()) + " не перепрыгнул это препядтсиве.");
-                            result = false;
+                    if (participant instanceof AnimateParticipants) {
+                        result = ((AnimateParticipants) participant).jump(height);
+                        if (!result) {
                             break;
                         }
                     }
 
-                    if (participants[i] instanceof InanimateParticipants) {
-                        if (((InanimateParticipants) participants[i]).getJumpHeight() >= height) {
-                            System.out.println((((InanimateParticipants) participants[i]).getName()) + " перепрыгнул это препядтсиве.");
-                            result = true;
-                        } else {
-                            System.out.println((((InanimateParticipants) participants[i]).getName()) + " не перепрыгнул это препядстаие.");
-                            result = false;
+                    if (participant instanceof InanimateParticipants) {
+                        result = ((InanimateParticipants) participant).jump(height);
+                        if (!result) {
                             break;
                         }
                     }
                 }
 
 
-                if (isRoad(barriers[j])) {
+                if (isRoad(barrier)) {
 
-                    int distance = ((Road) barriers[j]).getDistance();
-                    System.out.println(((Road) barriers[j]).getName() + " с длиной " + distance);
+                    int distance = ((Road) barrier).getDistance();
+                    System.out.println(barrier.getName() + " с длиной " + distance);
 
-                    if (participants[i] instanceof AnimateParticipants) {
-                        if (((AnimateParticipants) participants[i]).getRunDistance() >= distance) {
-                            System.out.println((((AnimateParticipants) participants[i]).getName()) + " пробежал эту дистанцию.");
-                            result = true;
-                        } else {
-                            System.out.println((((AnimateParticipants) participants[i]).getName()) + " не пробежал эту дистанцию.");
-                            result = false;
+                    if (participant instanceof AnimateParticipants) {
+                        result = ((AnimateParticipants) participant).run(distance);
+                        if (!result) {
                             break;
                         }
                     }
 
-                    if (participants[i] instanceof InanimateParticipants) {
-                        if (((InanimateParticipants) participants[i]).getRunDistance() >= distance) {
-                            System.out.println((((InanimateParticipants) participants[i]).getName()) + " пробежал эту дистанцию.");
-                            result = true;
-                        } else {
-                            System.out.println((((InanimateParticipants) participants[i]).getName()) + " не пробежал эту дистанцию.");
-                            result = false;
+                    if (participant instanceof InanimateParticipants) {
+                        result = ((InanimateParticipants) participant).run(distance);
+                        if (!result) {
                             break;
                         }
                     }
