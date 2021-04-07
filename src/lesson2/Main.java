@@ -4,46 +4,59 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        String[][] array1 = {   {"1", "2", "3", "4"},
+                {"5", "6", "7", "8"},
+                {"9", "0", "1", "2"},
+                {"3", "4", "5", "6"}   };
+
+        String[][] array2 = {   {"1", "2", "3", "4"},
+                {"5", "6", "s", "8"},
+                {"9", "0", "1", "2"},
+                {"3", "4", "5", "6"}   };
+
+        String[][] array3 = {   {"1", "2", "3", "4"},
+                {"5", "6", "7", "8"},
+                {"9", "0", "1", "2"}   };
+
         try {
-            try {
-                int a = 10/0;
-            } catch (ArithmeticException e) {
-                throw new MyArithmeticException();
-            }
-        } catch (MyArithmeticException e) {
-            System.out.println("Поймал свою ошибку");
+            System.out.println(sumStringArray(array1));
+        } catch (MyArraySizeException | MyArrayDataException e) {
+            e.printStackTrace();
         }
 
+        try {
+            System.out.println(sumStringArray(array2));
+        } catch (MyArraySizeException | MyArrayDataException e) {
+            e.printStackTrace();
+        }
 
-
-//        try {
-//            errorMethod(0);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        try (FileReader fileReader = new FileReader("G:\\Пример тестового.docx");
-//                FileReader fileReader2 = new FileReader("G:\\Пример тестового.docx")){
-//            System.out.println(fileReader.ready());
-//            char[] chars = new char[100];
-//            int count = fileReader.read(chars);
-//            for (int i = 0; i < count; i++) {
-//                System.out.print(chars[i]);
-//            }
-//            System.out.println();
-//            throw new IOException();
-//
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Файл не найден");
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            System.out.println("Проблемы при чтении");
-//            e.printStackTrace();
-//        }
-
-        System.out.println("Конец метода");
+        try {
+            System.out.println(sumStringArray(array3));
+        } catch (MyArraySizeException | MyArrayDataException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static void errorMethod(int a) {
-        int b = 10/a;
+    private static int sumStringArray(String[][] array) throws MyArraySizeException, MyArrayDataException {
+        int sum = 0;
+        if (array.length != 4) {
+            throw new MyArraySizeException("Не верный размер массива");
+        }
+        for (String[] strings : array) {
+            if (strings.length != 4) {
+                throw new MyArraySizeException("Не верный размер массива");
+            }
+        }
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                try {
+                    sum += Integer.parseInt(array[i][j]);
+                } catch (NumberFormatException e) {
+                    throw new MyArrayDataException("В ячейке " + i + " " + j + " неверные данные");
+                }
+            }
+        }
+        return sum;
     }
 }
