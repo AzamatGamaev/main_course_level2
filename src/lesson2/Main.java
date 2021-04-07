@@ -1,62 +1,39 @@
 package lesson2;
 
-import java.io.*;
-
 public class Main {
     public static void main(String[] args) {
 
-        String[][] array1 = {   {"1", "2", "3", "4"},
-                {"5", "6", "7", "8"},
-                {"9", "0", "1", "2"},
-                {"3", "4", "5", "6"}   };
+        String[][] array1 = {{"1", "2", "3", "4"},
+                {"1", "2", "3", "4"},
+                {"1", "2", "3", "4"},
+                {"1", "2", "3", "4"}};
 
-        String[][] array2 = {   {"1", "2", "3", "4"},
-                {"5", "6", "x", "8"},
-                {"9", "0", "1", "2"},
-                {"3", "4", "5", "6"}   };
+        String[][] array2 = {{"S", "2", "3", "4"},
+                {"1", "2", "3", "4"},
+                {"1", "2", "3", "4"},
+                {"1", "2", "3", "4"}};
 
-        String[][] array3 = {   {"1", "2", "3", "4"},
-                {"5", "6", "7", "8"},
-                {"9", "0", "1", "2"}   };
+        String[][] array3 = {{"1", "2", "3", "4"},
+                {"1", "2", "3", "4"}};
 
         try {
-            System.out.println(sumStringArray(array1));
+            System.out.println("Сумма элементов массива = " + sumStringArray4x4.sum(array1));
         } catch (MyArraySizeException | MyArrayDataException e) {
             e.printStackTrace();
         }
 
         try {
-            System.out.println(sumStringArray(array2));
+            System.out.println("Сумма элементов массива = " + sumStringArray4x4.sum(array2));
         } catch (MyArraySizeException | MyArrayDataException e) {
             e.printStackTrace();
         }
 
         try {
-            System.out.println(sumStringArray(array3));
+            System.out.println("Сумма элементов массива = " + sumStringArray4x4.sum(array3));
         } catch (MyArraySizeException | MyArrayDataException e) {
             e.printStackTrace();
         }
     }
 
-    private static int sumStringArray(String[][] array) throws MyArraySizeException, MyArrayDataException {
-        int sum = 0;
-        if (array.length != 4) {
-            throw new MyArraySizeException("Не верный размер массива");
-        }
-        for (String[] strings : array) {
-            if (strings.length != 4) {
-                throw new MyArraySizeException("Не верный размер массива");
-            }
-        }
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                try {
-                    sum += Integer.parseInt(array[i][j]);
-                } catch (NumberFormatException e) {
-                    throw new MyArrayDataException("В ячейке " + i + " " + j + " неверные данные");
-                }
-            }
-        }
-        return sum;
-    }
+
 }
