@@ -2,7 +2,7 @@ package lesson1;
 
 public interface Bouncing {
 
-    void jump();
+    boolean jump(int height);
 
     int getJumpHeight();
 }
