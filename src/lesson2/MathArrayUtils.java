@@ -1,7 +1,7 @@
 package lesson2;
 
-public class sumStringArray4x4 {
-    public static int sum (String[][] array) throws MyArraySizeException, MyArrayDataException {
+public class MathArrayUtils {
+    public static int sumArray(String[][] array) throws MyArraySizeException, MyArrayDataException {
         int sum = 0;
         if (array.length != 4) {
             throw new MyArraySizeException("Не верный размер преданного массива!");
@@ -16,7 +16,7 @@ public class sumStringArray4x4 {
                 try {
                     sum += Integer.parseInt(array[i][j]);
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException("В ячейке [" + i + "]" + "[" + j + "] данные несовеместимого типа.");
+                    throw new MyArrayDataException(i,j);
                 }
             }
         }
