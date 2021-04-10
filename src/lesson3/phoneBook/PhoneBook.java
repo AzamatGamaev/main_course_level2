@@ -1,11 +1,11 @@
-package lesson3.AbonentsBook;
+package lesson3.phoneBook;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class AbonentBook {
+public class PhoneBook {
     private final Map<String, List<String>> phoneBook = new HashMap<>();
 
     public void add(String name, String number) {
@@ -22,7 +22,7 @@ public class AbonentBook {
         if (phoneBook.containsKey(name)){
             return phoneBook.get(name).toString();
         }
-        return null;
+        return name + " не найден(а) в телефонной книге.";
     }
 }
 
