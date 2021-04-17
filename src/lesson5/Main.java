@@ -19,21 +19,21 @@ public class Main {
 
     static void method2() throws InterruptedException {
         long start2 = System.currentTimeMillis();
-        float[] arr2 = new float[ARR_LENGHT];
-        equateAllElementsTo1(arr2);
+        float[] arr = new float[ARR_LENGHT];
+        equateAllElementsTo1(arr);
         int half = ARR_LENGHT / 2;
-        float[] arr2_1 = new float[half];
-        float[] arr2_2 = new float[ARR_LENGHT - half];
-        System.arraycopy(arr2, 0, arr2_1, 0, half);
-        System.arraycopy(arr2, half, arr2_2, 0, ARR_LENGHT - half);
-        Thread t1 = new Thread(() -> changeArr(arr2_1));
-        Thread t2 = new Thread(() -> changeArr(arr2_2));
+        float[] arr1 = new float[half];
+        float[] arr2 = new float[ARR_LENGHT - half];
+        System.arraycopy(arr, 0, arr1, 0, half);
+        System.arraycopy(arr, half, arr2, 0, ARR_LENGHT - half);
+        Thread t1 = new Thread(() -> changeArr(arr1));
+        Thread t2 = new Thread(() -> changeArr(arr2));
         t1.start();
         t2.start();
         t1.join();
         t2.join();
-        System.arraycopy(arr2_1, 0, arr2, 0, arr2_1.length);
-        System.arraycopy(arr2, 0, arr2, arr2_1.length, arr2_2.length);
+        System.arraycopy(arr1, 0, arr, 0, arr1.length);
+        System.arraycopy(arr, 0, arr, arr1.length, arr2.length);
         long finish2 = System.currentTimeMillis();
         printTime(start2, finish2);
     }
